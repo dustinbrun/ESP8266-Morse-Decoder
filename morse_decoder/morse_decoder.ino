@@ -1,8 +1,10 @@
 #include <Arduino.h>
-#include <U8g2lib.h>
+#include <U8g2lib.h>  // https://github.com/olikraus/u8g2
 #include <Wire.h>
 
-#include "private/logo_svntk.h"
+#include "logo.h"
+#define logo_width 55
+#define logo_height 16
 
 #define BUTTON_PIN D5
 #define BUTTON_ONBOARD_PIN D6
@@ -60,7 +62,7 @@ void drawStatus() {
   u8g2.clearBuffer();
   u8g2.setFont(u8g2_font_fub17_tr);
 
-  u8g2.drawXBMP(128 - 55, 0, 55, 16, epd_bitmap_logo);  // top right corner
+  u8g2.drawXBMP(128 - logo_width, 0, logo_width, logo_height, epd_bitmap_logo);  // top right corner
 
   // Zeige Morsezeichen
   u8g2.drawStr(10, 20, currentMorse.c_str());
